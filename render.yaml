@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: projeto-corte-api
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn src.api:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: API_KEY
+        generateValue: true
+      - key: DEFAULT_TIME_LIMIT
+        value: "60"
+      - key: MAX_TIME_LIMIT
+        value: "120"
+      - key: ENV
+        value: production
+      - key: DEBUG
+        value: "false"

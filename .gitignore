@@ -1,0 +1,22 @@
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# Segredos
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Sistema operacional / editores
+.DS_Store
+.idea/
+.vscode/
+*.swp

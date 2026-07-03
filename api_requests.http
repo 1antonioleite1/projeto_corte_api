@@ -1,0 +1,72 @@
+### Arquivo de exemplos de requisições
+### Compatível com a extensão "REST Client" (VSCode) ou similar.
+### Ajuste @baseUrl para o endereço local ou para a URL pública em produção.
+
+@baseUrl = http://127.0.0.1:8000
+@apiKey = corte-api-2026-super-secret-key
+
+### 1) Health check (sem autenticação)
+GET {{baseUrl}}/health
+
+### 2) Otimização - exemplo do enunciado (item_A, item_B, item_C)
+POST {{baseUrl}}/otimizar
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "comprimento_padrao": 3000,
+  "itens": [
+    { "id": "item_A", "comprimento": 1150, "quantidade": 3 },
+    { "id": "item_B", "comprimento": 800, "quantidade": 4 },
+    { "id": "item_C", "comprimento": 450, "quantidade": 5 }
+  ]
+}
+
+### 3) Otimização - com time_limit customizado
+POST {{baseUrl}}/otimizar
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "comprimento_padrao": 6000,
+  "itens": [
+    { "id": "barra_A", "comprimento": 2200, "quantidade": 10 },
+    { "id": "barra_B", "comprimento": 1300, "quantidade": 6 }
+  ],
+  "time_limit": 30
+}
+
+### 4) Erro esperado (403) - sem cabecalho X-API-Key
+POST {{baseUrl}}/otimizar
+Content-Type: application/json
+
+{
+  "comprimento_padrao": 3000,
+  "itens": [
+    { "id": "item_A", "comprimento": 1150, "quantidade": 3 }
+  ]
+}
+
+### 5) Erro esperado (422) - item maior que a barra padrao
+POST {{baseUrl}}/otimizar
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "comprimento_padrao": 1000,
+  "itens": [
+    { "id": "item_gigante", "comprimento": 1500, "quantidade": 1 }
+  ]
+}
+
+### 6) Erro esperado (422) - quantidade zero/negativa
+POST {{baseUrl}}/otimizar
+Content-Type: application/json
+X-API-Key: {{apiKey}}
+
+{
+  "comprimento_padrao": 3000,
+  "itens": [
+    { "id": "item_invalido", "comprimento": 500, "quantidade": 0 }
+  ]
+}
