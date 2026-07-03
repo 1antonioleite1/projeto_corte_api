@@ -1,9 +1,7 @@
 # 🔗 URL Pública / Swagger
 
-> **Publicação pendente:** após criar o serviço no Render (seção [Implantação](#-implantação-deploy)), substitua os endereços abaixo pela URL fornecida pela plataforma.
->
-> - **API:** `https://<seu-servico>.onrender.com`
-> - **Swagger UI:** `https://<seu-servico>.onrender.com/docs`
+> - **API:** `https://projeto-corte-api-stdc.onrender.com`
+> - **Swagger UI:** `https://projeto-corte-api-stdc.onrender.com/docs`
 
 ---
 
